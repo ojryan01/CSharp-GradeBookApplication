@@ -43,7 +43,7 @@ namespace GradeBook.UserInterfaces
 
             if (parts[2] == "standard")
             {
-                BaseGradeBook gradeBook = new BaseGradeBook(name);
+                BaseGradeBook gradeBook = new StandardGradeBook(name);
                 Console.WriteLine("Created gradebook {0}.", name);
                 GradeBookUserInterface.CommandLoop(gradeBook);
             }
