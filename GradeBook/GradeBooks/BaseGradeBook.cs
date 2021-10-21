@@ -115,54 +115,35 @@ namespace GradeBook.GradeBooks
         {
             var gpa = 0;
 
-            if (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled)
-            {
-                gpa = 1;
                 switch (letterGrade)
                 {
                     case 'A':
-                        gpa += 4;
-                        return gpa;
+                        gpa = 4;
+                        break;
 
                     case 'B':
-                        gpa += 3;
-                        return gpa;
+                        gpa = 3;
+                        break;
                     case 'C':
-                        gpa += 2;
-                        return gpa;
+                        gpa = 2;
+                        break;
                     case 'D':
-                        gpa += 1;
-                        return gpa;
+                        gpa = 1;
+                        break;
                     case 'F':
-                        return gpa;
+                        gpa = 0;
+                        break;
                 }
-            }
 
+            if ( IsWeighted && (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled))
+            {
+                gpa += 1;
+                return gpa;
+            }
             else
             {
-                gpa = 0;
-                switch (letterGrade)
-            {
-                case 'A':
-                    gpa += 4;
-                    return gpa;
-
-                case 'B':
-                    gpa += 3;
-                    return gpa;
-                case 'C':
-                    gpa += 2;
-                    return gpa;
-                case 'D':
-                    gpa += 1;
-                    return gpa;
-                case 'F':
-                    return gpa;
+                return gpa;
             }
-            }
-
-            return gpa;
- 
         }
 
         public virtual void CalculateStatistics()
