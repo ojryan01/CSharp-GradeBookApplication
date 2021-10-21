@@ -31,8 +31,8 @@ namespace GradeBook.GradeBooks
 
             double lastAGrade = Students[aCount - 1].AverageGrade;
             double lastBGrade = Students[bCount - 1].AverageGrade;
-            double lastCGrade = Students[bCount - 1].AverageGrade;
-            double lastDGrade = Students[bCount - 1].AverageGrade;
+            double lastCGrade = Students[cCount - 1].AverageGrade;
+            double lastDGrade = Students[dCount - 1].AverageGrade;
 
             if (averageGrade >= lastAGrade)
                 return 'A';
