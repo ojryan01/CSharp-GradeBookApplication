@@ -9,17 +9,22 @@ using Newtonsoft.Json.Linq;
 
 namespace GradeBook.GradeBooks
 {
-    public abstract class BaseGradeBook
+    public abstract     class BaseGradeBook
     {
         public string Name { get; set; }
         public List<Student> Students { get; set; }
 
         public GradeBookType Type { get; set; }
 
-        public BaseGradeBook(string name)
+        public bool IsWeighted { get; set; }
+
+        //This is the constructor
+        public BaseGradeBook(string name, bool isweighted)
         {
             Name = name;
+            IsWeighted = isweighted;
             Students = new List<Student>();
+
         }
 
         public void AddStudent(Student student)
@@ -108,10 +113,13 @@ namespace GradeBook.GradeBooks
 
         public virtual double GetGPA(char letterGrade, StudentType studentType)
         {
+            var gpa = 0;
+            
             switch (letterGrade)
             {
                 case 'A':
-                    return 4;
+                    gpa = 4;
+                    return gpa;
                 case 'B':
                     return 3;
                 case 'C':
@@ -121,7 +129,17 @@ namespace GradeBook.GradeBooks
                 case 'F':
                     return 0;
             }
-            return 0;
+            
+            if(studentType == StudentType.Honors || studentType == StudentType.DualEnrolled )
+            { 
+                gpa += 1;
+                return gpa;
+            }
+
+            else
+            {
+                return gpa;
+            }
         }
 
         public virtual void CalculateStatistics()
