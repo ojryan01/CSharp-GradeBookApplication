@@ -114,32 +114,55 @@ namespace GradeBook.GradeBooks
         public virtual double GetGPA(char letterGrade, StudentType studentType)
         {
             var gpa = 0;
-            
-            switch (letterGrade)
+
+            if (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled)
             {
-                case 'A':
-                    gpa = 4;
-                    return gpa;
-                case 'B':
-                    return 3;
-                case 'C':
-                    return 2;
-                case 'D':
-                    return 1;
-                case 'F':
-                    return 0;
-            }
-            
-            if(studentType == StudentType.Honors || studentType == StudentType.DualEnrolled )
-            { 
-                gpa += 1;
-                return gpa;
+                gpa = 1;
+                switch (letterGrade)
+                {
+                    case 'A':
+                        gpa += 4;
+                        return gpa;
+
+                    case 'B':
+                        gpa += 3;
+                        return gpa;
+                    case 'C':
+                        gpa += 2;
+                        return gpa;
+                    case 'D':
+                        gpa += 1;
+                        return gpa;
+                    case 'F':
+                        return gpa;
+                }
             }
 
             else
             {
-                return gpa;
+                gpa = 0;
+                switch (letterGrade)
+            {
+                case 'A':
+                    gpa += 4;
+                    return gpa;
+
+                case 'B':
+                    gpa += 3;
+                    return gpa;
+                case 'C':
+                    gpa += 2;
+                    return gpa;
+                case 'D':
+                    gpa += 1;
+                    return gpa;
+                case 'F':
+                    return gpa;
             }
+            }
+
+            return gpa;
+ 
         }
 
         public virtual void CalculateStatistics()
